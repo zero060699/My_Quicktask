@@ -16,11 +16,12 @@
     </div>
     <table class="table table-bordered">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>{{ trans('label.no') }}</th>
                 <th>{{ trans('lable.name') }}</th>
                 <th>{{ trans('lable.detail') }}</th>
                 <th>{{ trans('lable.author') }}</th>
+                <th>{{ trans('label.action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -28,20 +29,18 @@
                $count = 1;
             @endphp
             @foreach ($posts as $post)
-            <tr>
+            <tr class="text-center">
                 <td>{{ $count++ }}</td>
                 <td>{{ $post->name }}</td>
                 <td>{{ $post->detail }}</td>
                 <td>{{ $post->author }}</td>
                 <td>
-                    <div>
-                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">{{ trans('lable.edit') }}</a>
-                    </div>
+
                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <a href="#" class="btn btn-info">{{ trans('lable.comment') }}</a>
-
+                        <span href="#" class="btn btn-info">{{ trans('lable.comment') }}</span>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">{{ trans('lable.edit') }}</a>
                         <button type="submit" class="btn btn-danger">{{ trans('label.delete') }}</button>
                     </form>
                 </td>
